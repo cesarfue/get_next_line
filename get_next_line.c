@@ -6,7 +6,7 @@
 /*   By: cefuente <cefuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 08:11:19 by cesar             #+#    #+#             */
-/*   Updated: 2023/11/29 14:28:01 by cefuente         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:14:21 by cefuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*get_next_line(int fd)
 {
-    static char	*rope;
-    char		*line;
+	static char	*rope;
+	char		*line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
-        return (NULL);
-    rope = buf_to_rope(fd, rope);
-    if (!rope)
-        return (NULL);
-    line = rope_to_line(rope);
-    rope = get_next(rope);
-    if (!line)
-        return (NULL);
-    return (line);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	rope = buf_to_rope(fd, rope);
+	if (!rope)
+		return (NULL);
+	line = rope_to_line(rope);
+	rope = get_next(rope);
+	if (!line)
+		return (NULL);
+	return (line);
 }
 
 char	*buf_to_rope(int fd, char *rope)
@@ -37,7 +37,7 @@ char	*buf_to_rope(int fd, char *rope)
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL); 
+		return (NULL);
 	rd = 1;
 	while (!(ft_strchr(rope, '\n')) && rd > 0)
 	{
@@ -50,10 +50,8 @@ char	*buf_to_rope(int fd, char *rope)
 			tmp = ft_strjoin(rope, buf);
 			free(rope);
 			rope = tmp;
-			if (!rope)
-                return (free(buf), NULL);
 		}
-	}		
+	}
 	if (rd == -1)
 		return (free(buf), free(rope), NULL);
 	return (free(buf), rope);

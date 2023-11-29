@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cefuente <cefuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:30:47 by cesar             #+#    #+#             */
-/*   Updated: 2023/11/28 20:21:57 by cesar            ###   ########.fr       */
+/*   Updated: 2023/11/29 17:17:47 by cefuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*get_next_line(int fd)
 {
-	char		*line;
 	static char	*rope;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -24,6 +24,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = rope_to_line(rope);
 	rope = get_next(rope);
+	if (!line)
+		return (NULL);
 	return (line);
 }
 
@@ -40,8 +42,6 @@ char	*buf_to_rope(int fd, char *rope)
 	while (!(ft_strchr(rope, '\n')) && rd > 0)
 	{
 		rd = read(fd, buf, BUFFER_SIZE);
-		if (rd == -1)
-			return (free(buf), free(rope), NULL);
 		buf[rd] = 0;
 		if (!rope)
 			rope = ft_strdup(buf);
@@ -52,6 +52,8 @@ char	*buf_to_rope(int fd, char *rope)
 			rope = tmp;
 		}
 	}
+	if (rd == -1)
+		return (free(buf), free(rope), NULL);
 	return (free(buf), rope);
 }
 
@@ -66,6 +68,8 @@ char	*rope_to_line(char *rope)
 	while (rope[i] != '\n' && rope[i])
 		i++;
 	line = ft_strndup(rope, i + 1);
+	if (!line)
+		return (NULL);
 	return (line);
 }
 
@@ -74,6 +78,8 @@ char	*get_next(char *rope)
 	char	*next_rope;
 
 	if (!(ft_strchr(rope, '\n')))
+		return (free(rope), NULL);
+	if (ft_strlen(rope) == 1)
 		return (free(rope), NULL);
 	next_rope = ft_strdup(ft_strchr(rope, '\n') + 1);
 	return (free(rope), next_rope);
