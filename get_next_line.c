@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cefuente <cefuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 08:11:19 by cesar             #+#    #+#             */
-/*   Updated: 2023/11/26 13:43:51 by cesar            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:26:57 by cefuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*buf_to_rope(int fd, char *rope)
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		return (NULL); 
 	rd = 1;
 	while (!(ft_strchr(rope, '\n')) && rd > 0)
 	{
