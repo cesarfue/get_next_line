@@ -6,7 +6,7 @@
 #    By: cesar <cesar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/03 18:46:17 by cefuente          #+#    #+#              #
-#    Updated: 2023/11/26 12:59:03 by cesar            ###   ########.fr        #
+#    Updated: 2023/11/28 20:57:01 by cesar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJS	:= $(addprefix build/, $(OBJS))
 
 HEADER    =    get_next_line.h
 
-NAME    =    get_next_line.a
+NAME    =    a.out
 
 CC        =    cc
 
